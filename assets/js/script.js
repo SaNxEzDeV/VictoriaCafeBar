@@ -57,10 +57,10 @@ const backTopBtn = document.querySelector("[data-back-top-btn]");
 let lastScrollPos = 0;
 
 const hideHeader = function () {
-  const isScrollBottom = lastScrollPos < window.scrollY;
-  if (isScrollBottom) {
+  const isScrollingDown = lastScrollPos < window.scrollY;
+  if (isScrollingDown) {
     header.classList.add("hide");
-  } else {
+  } else if (window.scrollY > 50) {
     header.classList.remove("hide");
   }
 
@@ -75,6 +75,7 @@ window.addEventListener("scroll", function () {
   } else {
     header.classList.remove("active");
     backTopBtn.classList.remove("active");
+    header.classList.remove("hide"); // Ensure header is visible when at the top
   }
 });
 
