@@ -29,7 +29,7 @@ the live site.
 - Preserve the existing vanilla-JS + `data-*` attribute pattern (see below) — don't rewrite it into a library.
 - Content is in **Spanish** — keep new copy in Spanish and match the existing tone.
 - Commit messages: short, descriptive (repo history is informal — no strict convention).
-- Remote is HTTPS (`github.com/SaNxEzDeV/VictoriaCafeBar`).
+- Remote is SSH (`git@github.com:SaNxEzDeV/VictoriaCafeBar.git`).
 
 ## Deployment
 
