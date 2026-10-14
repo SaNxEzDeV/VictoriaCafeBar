@@ -33,8 +33,22 @@ the live site.
 
 ## Deployment
 
-- **Production is hosted on IONOS** (domain + hosting). Deploying = uploading the
-  site files to IONOS (FTP / File Manager / Deploy Now). **This is the real deploy path.**
+- **Production is hosted on IONOS** (domain + hosting, in the client's name):
+  **https://victoriasmashburger.es**. Deploying = uploading the changed files to
+  IONOS. **This is the real deploy path.**
+- **Use `scripts/deploy.sh`** (SFTP). Rafael runs it in his own terminal because
+  it asks for the IONOS password (not stored anywhere; no SSH key set up yet):
+  ```
+  scripts/deploy.sh USUARIO_SFTP HOST_SFTP . victoriasmashburger.es                 # index.html + style.css
+  scripts/deploy.sh USUARIO_SFTP HOST_SFTP . victoriasmashburger.es -- assets/menus/menu-smash.pdf
+  ```
+  Paths are relative to the repo root and land at the same path on IONOS; the
+  site lives at the SFTP root (`.`). SFTP user/host: IONOS panel → Hosting →
+  SFTP & SSH. After uploading, the script downloads each file from the live site
+  and prints `OK` / `DISTINTO`. Don't add `-b` to `sftp` (it forces BatchMode and
+  blocks the password prompt).
+- Flow: edit → check locally (`python3 -m http.server 8090`) → commit + push →
+  deploy only the changed files → verify live.
 - `.github/workflows/static.yml` publishes to **GitHub Pages** on push to `master`.
   This was set up **for testing only** and is **not** the production host — do not
   assume a `git push` updates the live site.
@@ -52,6 +66,7 @@ assets/
   js/script.js        ← all behaviour (vanilla JS, ~170 lines)
   images/             ← ~50 images (hero, about, menu, events, gallery, logos)
   menus/              ← menu PDFs (see note below)
+scripts/deploy.sh     ← SFTP deploy to IONOS (production) — see Deployment
 .github/workflows/
   static.yml          ← GitHub Pages test deploy (NOT production — see Deployment)
 ```
@@ -83,7 +98,8 @@ Three PDFs, linked from their menu sections:
 - `menu-tapas.pdf` — tapas
 - `menu-smash.pdf` — smash burgers
 
-⚠️ **These PDFs are very large** (`menu-desayuno.pdf` ~34 MB, `menu-smash.pdf` ~14 MB).
+⚠️ **These PDFs are heavy** (`menu-smash.pdf` ~4 MB, `menu-tapas.pdf` ~3 MB; unlinked
+`menu-smash-heavy.pdf` ~24 MB). The EN/DE menus exist in `assets/menus/` but aren't linked.
 They hurt load time and IONOS upload time. If touching menus, consider compressing/optimising them.
 
 ## Known rough edges (fix if asked)
