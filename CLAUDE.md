@@ -17,7 +17,7 @@ the live site.
 
 ### Business details (as shown on the site)
 - **Address:** Calle el Copo, 30, 29740 Torre del Mar, Málaga
-- **Hours:** 8 AM – 5:30 PM · 8 PM – 11:30 PM
+- **Hours:** 8:00 – 16:00 · 20:00 – 23:00 (closed Tuesdays)
 - **Phone:** +34 654 497 318
 - **Email:** victoriasmashburger@gmail.com
 - **Instagram:** [@victoriasmash_](https://www.instagram.com/victoriasmash_/)
