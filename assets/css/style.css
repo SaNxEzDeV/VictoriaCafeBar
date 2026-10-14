@@ -2161,3 +2161,78 @@ textarea.input-field {
   }
 
 }
+
+/*-----------------------------------*\
+  #MOBILE HEADER — logos más pequeños para no tapar el carrusel
+\*-----------------------------------*/
+
+.nowrap { white-space: nowrap; }
+
+@media (max-width: 574px) {
+
+  .header { padding-block: 16px; }
+
+  .header.active { padding-block: 10px; }
+
+  .header .logo img {
+    height: 44px;
+    width: auto;
+  }
+
+  .hero .slider-item { padding-block-start: 70px; }
+
+}
+
+
+
+/*-----------------------------------*\
+  #HERO LEGIBILITY — velo oscuro + halo para que el texto dorado
+  se lea también sobre las fotos claras del carrusel
+\*-----------------------------------*/
+
+/* Velo radial: más oscuro en el centro (donde va el texto), casi
+   transparente en los bordes para que la foto siga luciendo. */
+.hero .slider-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 65% at 50% 52%,
+      hsla(0, 0%, 0%, 0.66) 0%,
+      hsla(0, 0%, 0%, 0.48) 55%,
+      hsla(0, 0%, 0%, 0.2) 100%);
+  pointer-events: none;
+}
+
+/* Halo suave detrás de las letras (no cambia el color dorado). */
+.hero .section-subtitle,
+.hero .btn .text-1 {
+  text-shadow:
+    0 0 2px hsla(0, 0%, 0%, 0.9),
+    0 1px 3px hsla(0, 0%, 0%, 0.8),
+    0 0 8px hsla(0, 0%, 0%, 0.7),
+    0 0 18px hsla(0, 0%, 0%, 0.6);
+}
+
+.hero .hero-title,
+.hero .hero-text {
+  text-shadow:
+    0 2px 4px hsla(0, 0%, 0%, 0.6),
+    0 0 24px hsla(0, 0%, 0%, 0.5);
+}
+
+/* El botón transparente gana un fondo oscuro translúcido. */
+.hero .btn-primary { background-color: hsla(0, 0%, 0%, 0.4); }
+
+@media (max-width: 574px) {
+
+  /* En móvil el texto ocupa casi todo el ancho: velo más uniforme. */
+  .hero .slider-bg::after {
+    background:
+      radial-gradient(ellipse 110% 60% at 50% 50%,
+        hsla(0, 0%, 0%, 0.55) 0%,
+        hsla(0, 0%, 0%, 0.4) 70%,
+        hsla(0, 0%, 0%, 0.2) 100%);
+  }
+
+}
